@@ -1,1 +1,3 @@
-IyBHSUYgUXVpeiBBcHAKClF1aXogYXBwIHdpdGggR0lGIGludGVncmF0aW9u
+# GIF Quiz App
+
+Quiz app with GIF integration
