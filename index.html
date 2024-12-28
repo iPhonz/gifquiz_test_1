@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIF Quiz</title>
+    <style>
+        /* Previous styles remain the same */
+    </style>
+</head>
+<body>
+    <!-- Previous HTML remains the same -->
+    <script>
+        // Previous JavaScript remains the same until saveHighScore function
+
+        function saveHighScore() {
+            const playerName = prompt('Enter your name for the leaderboard:');
+            if (playerName) {
+                highScores.push({ name: playerName, score });
+                highScores.sort((a, b) => b.score - a.score);
+                highScores = highScores.slice(0, 5);
+                localStorage.setItem('highScores', JSON.stringify(highScores));
+                updateLeaderboard();
+            }
+        }
+
+        function shareScore() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'GIF Quiz Score',
+                    text: `I scored ${score} points in GIF Quiz! Can you beat my score?`,
+                    url: window.location.href
+                }).catch(console.error);
+            } else {
+                alert(`I scored ${score} points in GIF Quiz! Can you beat my score?`);
+            }
+        }
+
+        // Initialize the quiz
+        fetchQuestion();
+        startTimer();
+        updateLeaderboard();
+
+        // Event listener for Enter key
+        document.getElementById('answer').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                submitAnswer();
+            }
+        });
+    </script>
+</body>
+</html>
